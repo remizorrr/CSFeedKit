@@ -13,3 +13,9 @@
 + (instancetype)sharedInstance;
 
 @end
+
+@interface CSRFC2822DateFormatter2 : NSDateFormatter
+
++ (instancetype)sharedInstance;
+
+@end

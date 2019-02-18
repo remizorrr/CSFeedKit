@@ -44,7 +44,15 @@
 
         NSXMLElement * dateElement = [element elementsForName:@"pubDate"].firstObject;
         if ( dateElement ) {
-            self.pubDate = [[CSRFC2822DateFormatter sharedInstance] dateFromString:dateElement.stringValue];
+            NSDate* date = [[CSRFC2822DateFormatter sharedInstance] dateFromString:dateElement.stringValue];
+            if(!date) {
+                date = [[CSRFC2822DateFormatter2 sharedInstance] dateFromString:dateElement.stringValue];
+            }
+            if(!date) {
+                NSLog(@"Error converting date from %@",dateElement.stringValue);
+                date = [NSDate date];
+            }
+            self.pubDate = date;
         }
     }
     return self;

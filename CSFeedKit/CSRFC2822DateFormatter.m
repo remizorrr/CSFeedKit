@@ -28,3 +28,24 @@
 }
 
 @end
+
+@implementation CSRFC2822DateFormatter2
+
++ (instancetype)sharedInstance {
+    static CSRFC2822DateFormatter2* sharedInstance;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[CSRFC2822DateFormatter2 alloc] init];
+    });
+    return sharedInstance;
+}
+
+- (instancetype)init {
+    self  = [super init];
+    if ( self != nil ) {
+        self.dateFormat = @"EEE, dd MMM yyyy HH:mm:ss z"; //RFC2822-Format
+    }
+    return self;
+}
+
+@end
